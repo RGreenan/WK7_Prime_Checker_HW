@@ -19,16 +19,9 @@ PrimeChecker.prototype.numberIsPrime = function (number) {
 PrimeChecker.prototype.bindEvents = function() {
   PubSub.subscribe('FormView:numbers-submitted', (event) => {
     const inputtedNumbers = event.detail;
-    const amountOfNumbers = this.countWords(inputtedNumbers);
-    PubSub.publish("PrimeChecker:result-calculated", amountOfNumbers);
+    const numberisPrime = this.numberIsPrime(inputtedNumbers);
+    PubSub.publish("PrimeChecker:result-calculated", numberisPrime);
   });
 };
-
-
-PrimeChecker.prototype.countWords = function (text) {
-  const amountOfNumbers = text.split(' ').length;
-  return amountOfNumbers;
-}
-
 
 module.exports = PrimeChecker;
